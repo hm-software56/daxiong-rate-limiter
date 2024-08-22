@@ -7,7 +7,7 @@ use Yii;
 
 class DaxiongRateLimiter implements RateLimitInterface
 {
-    public $rateLimit=100; // requests
+    public $rateLimit = 100; // requests
     public $timePeriod = 30; // seconds
 
     private $identifier;
@@ -59,12 +59,26 @@ class DaxiongRateLimiter implements RateLimitInterface
 
     public function saveAllowance($request, $action, $allowance, $timestamp)
     {
-        $exists = (new \yii\db\Query())
-            ->select(['id'])
-            ->from('rate_limit')
-            ->where(['identifier' => $this->identifier])
-            ->exists();
-
+        try {
+            $exists = (new \yii\db\Query())
+                ->select(['id'])
+                ->from('rate_limit')
+                ->where(['identifier' => $this->identifier])
+                ->exists();
+        } catch (\yii\db\Exception $e) {
+            $exists = false;
+            // If the table doesn't exist, create it
+            if ($e->getCode() == '42S02') { // SQLSTATE 42S02 means "table not found"
+                Yii::$app->db->createCommand()->createTable('rate_limit', [
+                    'id' => 'pk',
+                    'identifier' => 'string NOT NULL',
+                    'allowance' => 'integer NOT NULL',
+                    'last_check' => 'integer NOT NULL',
+                ])->execute();
+            } else {
+                throw $e; // Rethrow any other exception
+            }
+        }
         if ($exists) {
             Yii::$app->db->createCommand()
                 ->update('rate_limit', [
