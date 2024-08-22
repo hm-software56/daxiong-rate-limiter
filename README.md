@@ -8,11 +8,10 @@ You can install this package via Composer:
 
 ```bash
 composer require hm/daxiong-rate-limiter:dev-main
+```bash
 
+## 2. Config add this code in config>main.php  components
 
-## 2. Config 
-
-add this code in components
 'hmrateLimiter' => [
 	'class' => DaxiongRateLimiter::class,
 	'rateLimit' => 200,    // optional Set a new rate limit (number of requests)
