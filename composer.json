@@ -1,0 +1,13 @@
+{
+  "name": "vendor/daxiong-rate-limiter",
+  "description": "A custom rate limiter for Yii2 applications.",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "CustomRateLimiter\\": "src/"
+    }
+  },
+  "require": {
+    "yiisoft/yii2": "^2.0"
+  }
+}
