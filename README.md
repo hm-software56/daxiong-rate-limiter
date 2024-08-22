@@ -40,8 +40,44 @@ public function behaviors()
 	];
 } 
 ```
+## 4. Create layout file name 'layout_rate_limiter.php' in views/layouts/ then copy the below code and paste inside
 
-## 4. create this php file rate_limiter.php in views/site/ then copy the below code and paste in file
+```bash
+<?php
+
+/** @var yii\web\View $this */
+/** @var string $content */
+use yii\helpers\Html;
+?>
+<?php $this->beginPage() ?>
+    <!DOCTYPE html>
+    <html lang="<?= Yii::$app->language ?>" class="h-100">
+    <head>
+        <meta charset="<?= Yii::$app->charset ?>">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <?php $this->registerCsrfMetaTags() ?>
+        <title><?= Html::encode($this->title) ?></title>
+        <?php $this->head() ?>
+    </head>
+    <body style="background:#BEBEBE">
+    <?php $this->beginBody() ?>
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main role="main">
+                <div class="container">
+                    <?= $content ?>
+                </div>
+            </main>
+        </div>
+    </div>
+    <?php $this->endBody() ?>
+    </body>
+    </html>
+<?php $this->endPage();
+
+```
+
+## 5. Create view file name 'rate_limiter.php' in views/site/ then copy the below code and paste inside
   
  ```bash
 <style>
