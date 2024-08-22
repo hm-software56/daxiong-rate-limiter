@@ -2,13 +2,26 @@
   "name": "hm/daxiong-rate-limiter",
   "description": "A custom rate limiter for Yii2 applications.",
   "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "rate limiter",
+    "request limit"
+  ],
+  "authors": [
+    {
+      "name": "Daxiong",
+      "email": "daxionginfo@gmail.com",
+      "homepage": "https://github.com/hm-software56"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "hm\\daxiongratelimiter\\": "src/"
     }
   },
   "require": {
-    "yiisoft/yii2": "^2.0"
+    "yiisoft/yii2": "^2.0",
+    "php": "^7.2 || ^8.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true

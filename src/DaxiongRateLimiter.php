@@ -25,11 +25,26 @@ class DaxiongRateLimiter implements RateLimitInterface
 
     public function loadAllowance($request, $action)
     {
-        $record = (new \yii\db\Query())
-            ->select(['allowance', 'last_check'])
-            ->from('rate_limit')
-            ->where(['identifier' => $this->identifier])
-            ->one();
+        try {
+            $record = (new \yii\db\Query())
+                ->select(['allowance', 'last_check'])
+                ->from('rate_limit')
+                ->where(['identifier' => $this->identifier])
+                ->one();
+        } catch (\yii\db\Exception $e) {
+            $record = false;
+            // If the table doesn't exist, create it
+            if ($e->getCode() == '42S02') { // SQLSTATE 42S02 means "table not found"
+                Yii::$app->db->createCommand()->createTable('rate_limit', [
+                    'id' => 'pk',
+                    'identifier' => 'string NOT NULL',
+                    'allowance' => 'integer NOT NULL',
+                    'last_check' => 'integer NOT NULL',
+                ])->execute();
+            } else {
+                throw $e; // Rethrow any other exception
+            }
+        }
 
         if ($record === false) {
             return [$this->rateLimit, time()];
@@ -59,26 +74,11 @@ class DaxiongRateLimiter implements RateLimitInterface
 
     public function saveAllowance($request, $action, $allowance, $timestamp)
     {
-        try {
-            $exists = (new \yii\db\Query())
-                ->select(['id'])
-                ->from('rate_limit')
-                ->where(['identifier' => $this->identifier])
-                ->exists();
-        } catch (\yii\db\Exception $e) {
-            $exists = false;
-            // If the table doesn't exist, create it
-            if ($e->getCode() == '42S02') { // SQLSTATE 42S02 means "table not found"
-                Yii::$app->db->createCommand()->createTable('rate_limit', [
-                    'id' => 'pk',
-                    'identifier' => 'string NOT NULL',
-                    'allowance' => 'integer NOT NULL',
-                    'last_check' => 'integer NOT NULL',
-                ])->execute();
-            } else {
-                throw $e; // Rethrow any other exception
-            }
-        }
+        $exists = (new \yii\db\Query())
+            ->select(['id'])
+            ->from('rate_limit')
+            ->where(['identifier' => $this->identifier])
+            ->exists();
         if ($exists) {
             Yii::$app->db->createCommand()
                 ->update('rate_limit', [
