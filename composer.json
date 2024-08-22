@@ -1,5 +1,5 @@
 {
-  "name": "hm/daxiong-rate-limiter:dev-main",
+  "name": "hm/daxiong-rate-limiter",
   "description": "This package provides a custom rate limiter implementation for Yii2 applications.",
   "type": "library",
   "license": "MIT",
