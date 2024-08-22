@@ -8,7 +8,7 @@ You can install this package via Composer:
 
 ```bash
 composer require hm/daxiong-rate-limiter:dev-main
-```bash
+```
 
 ## 2. Config add this code in config>main.php  components
 
