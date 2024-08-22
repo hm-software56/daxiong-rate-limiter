@@ -4,10 +4,13 @@
   "type": "library",
   "autoload": {
     "psr-4": {
-      "CustomRateLimiter\\": "src/"
+      "DaxiongRateLimiter\\": "src/"
     }
   },
   "require": {
-    "yiisoft/yii2": "^2.0"
-  }
+    "yiisoft/yii2": "^2.0",
+    "hm/daxiong-rate-limiter": "dev-master"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
