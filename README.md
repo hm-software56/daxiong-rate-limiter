@@ -12,14 +12,17 @@ composer require hm/daxiong-rate-limiter:dev-main
 
 ## 2. Config add this code in config>main.php  components
 
+```bash
 'hmrateLimiter' => [
 	'class' => DaxiongRateLimiter::class,
 	'rateLimit' => 200,    // optional Set a new rate limit (number of requests)
 	'timePeriod' => 120,   //optional Set a new time period (in seconds)
 ],
+```
 
 ## 3. Call use In controller function behaviors()
 
+```bash
 public function behaviors()
 {
 	return [
@@ -36,3 +39,4 @@ public function behaviors()
 		],
 	];
 } 
+```
