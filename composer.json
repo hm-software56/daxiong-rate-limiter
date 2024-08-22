@@ -9,7 +9,7 @@
   },
   "require": {
     "yiisoft/yii2": "^2.0",
-    "hm/daxiong-rate-limiter": "dev-master"
+    "hm/daxiong-rate-limiter": "main"
   },
   "minimum-stability": "dev",
   "prefer-stable": true
