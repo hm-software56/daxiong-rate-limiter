@@ -1,5 +1,5 @@
 {
-  "name": "daxiong/daxiong-rate-limiter",
+  "name": "hm/daxiong-rate-limiter",
   "description": "A custom rate limiter for Yii2 applications.",
   "type": "library",
   "autoload": {
