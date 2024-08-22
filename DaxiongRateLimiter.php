@@ -1,6 +1,6 @@
 <?php
 
-namespace DaxiongRateLimiter;
+namespace hm\daxiongratelimiter;
 
 use yii\filters\RateLimitInterface;
 use Yii;
