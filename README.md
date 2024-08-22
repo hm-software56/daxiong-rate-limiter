@@ -119,7 +119,7 @@ use yii\helpers\Html;
         display: inline-block;
         width: 140px;
         height: 140px;
-        background-image: url('/img/rate_limiter.png');
+        background-image: url('https://raw.githubusercontent.com/hm-software56/daxiong-rate-limiter/main/block_ip.png');
         background-size: cover;
     }
 
@@ -171,7 +171,7 @@ use yii\helpers\Html;
     }
 </style>
 <?php
-$time = Yii::$app->params['rate_limit']['per_second'];
+$time = Yii::$app->hmrateLimiter->timePeriod;
 $time_last = time() - Yii::$app->session->get('last_check');
 $time = $time - $time_last;
 $smh = '';
@@ -191,11 +191,9 @@ if ($time < 60) {
 }
 ?>
 <div id="notfound">
-    <img src="/logo/logo.png" alt="logo" class="img" width="350">
     <div class="notfound">
         <div class="notfound-404"></div>
         <div style="background: #f2f5f8" class="p-2 rounded">
-
             <h1>403</h1>
             <h2><?= Yii::t('app', 'Your network connection insecure') ?></h2>
             <p class="pt-2"><?= Yii::t('app', 'We have denied your connection to our system.!, Please wait') . ' ' . $smh . ', ' . Yii::t('app', 'or contact administrator') ?> </p>
