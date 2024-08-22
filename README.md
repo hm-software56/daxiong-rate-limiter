@@ -7,5 +7,5 @@ This package provides a custom rate limiter implementation for Yii2 applications
 You can install this package via Composer:
 
 ```bash
-composer require vendor/daxiong-rate-limiter
+composer require hm/daxiong-rate-limiter
 
