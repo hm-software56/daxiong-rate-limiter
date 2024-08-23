@@ -7,8 +7,8 @@ use Yii;
 
 class DaxiongRateLimiter implements RateLimitInterface
 {
-    public $rateLimit = 100; // requests
-    public $timePeriod = 30; // seconds
+    public $rateLimit = 1000; // requests
+    public $timePeriod = 600; // seconds
 
     private $identifier;
 

@@ -15,8 +15,8 @@ composer require hm/daxiong-rate-limiter:dev-main
 ```bash
 'hmrateLimiter' => [
 	'class' => DaxiongRateLimiter::class,
-	'rateLimit' => 200,    // optional Set a new rate limit (number of requests)
-	'timePeriod' => 120,   //optional Set a new time period (in seconds)
+	'rateLimit' => 500,    // optional Set a new rate limit (number of requests)
+	'timePeriod' => 300,   //optional Set a new time period (in seconds)
 ],
 ```
 
