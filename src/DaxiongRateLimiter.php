@@ -63,8 +63,8 @@ class DaxiongRateLimiter implements RateLimitInterface
             $allowance = $this->rateLimit;
         } else {
             if ($allowance == 0) {
-                Yii::$app->controller->layout = 'layout_rate_limiter.php';
-                echo Yii::$app->controller->render('/site/rate_limiter');
+                Yii::$app->controller->layout = '@vendor/hm/daxiong-rate-limiter/src/views/layout_rate_limiter.php';
+                echo Yii::$app->controller->render('@vendor/hm/daxiong-rate-limiter/src/views/rate_limiter');
                 exit();
             }
         }
